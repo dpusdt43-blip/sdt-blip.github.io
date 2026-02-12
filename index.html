@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Siyasal Düşünceler Topluluğu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Serif+Display&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e14;
+    --parchment: #f5f0e8;
+    --parchment-dim: #ede7d8;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --crimson: #8b1a2b;
+    --crimson-light: #b82c40;
+    --steel: #3a4a5c;
+    --steel-light: #5a7080;
+    --mist: #cdd5dc;
+    --white: #ffffff;
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'Source Serif 4', serif;
+    --font-heading: 'Playfair Display', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--ink);
+    color: var(--parchment);
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ══════════════════════════════════════
+     NAVIGATION
+  ══════════════════════════════════════ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4vw;
+    height: 68px;
+    background: rgba(14,14,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo .emblem {
+    width: 38px; height: 38px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-weight: 900; font-size: 16px;
+    color: var(--ink); flex-shrink: 0;
+    transition: transform 0.4s ease;
+  }
+  .nav-logo:hover .emblem { transform: rotate(30deg); }
+  .nav-logo-text { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--parchment); line-height: 1.2; }
+  .nav-logo-text span { color: var(--gold); font-size: 10px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; display: block; }
+
+  .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+  .nav-links a {
+    color: var(--mist); font-size: 13px; letter-spacing: 0.5px;
+    padding: 8px 14px; border-radius: 4px;
+    text-decoration: none; transition: all 0.2s;
+    font-family: var(--font-body); font-weight: 300;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 4px; left: 14px; right: 14px;
+    height: 1px; background: var(--gold); transform: scaleX(0);
+    transition: transform 0.3s ease; transform-origin: left;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--crimson); color: var(--white) !important;
+    border-radius: 4px !important; font-weight: 600 !important;
+    letter-spacing: 0.3px !important; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--crimson-light) !important; }
+  .nav-cta::after { display: none !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 6px;
+  }
+  .hamburger span { width: 24px; height: 2px; background: var(--parchment); transition: all 0.3s; border-radius: 1px; }
+
+  /* ══════════════════════════════════════
+     HERO
+  ══════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 100px 5vw 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(139,26,43,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(58,74,92,0.18) 0%, transparent 60%),
+      linear-gradient(180deg, #0e0e14 0%, #111218 50%, #0e0e14 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(var(--gold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-ornament {
+    position: absolute;
+    width: 600px; height: 600px;
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin-slow 60s linear infinite;
+  }
+  .hero-ornament::before {
+    content: ''; position: absolute; inset: 40px;
+    border: 1px solid rgba(201,168,76,0.06);
+    border-radius: 50%;
+    animation: spin-slow 40s linear infinite reverse;
+  }
+  @keyframes spin-slow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  .hero-content { position: relative; z-index: 2; max-width: 860px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+    padding: 6px 16px; border-radius: 2px; margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 7vw, 88px);
+    line-height: 1.05;
+    color: var(--parchment);
+    margin-bottom: 10px;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; display: block; }
+  .hero-divider {
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 24px auto;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 18px); font-weight: 300; font-style: italic;
+    color: var(--mist); line-height: 1.7; max-width: 560px; margin: 0 auto 40px;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--ink);
+    padding: 14px 32px; font-family: var(--font-heading); font-weight: 700;
+    font-size: 14px; letter-spacing: 0.5px; border: none;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: all 0.25s ease; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--parchment);
+    padding: 14px 32px; font-family: var(--font-heading); font-weight: 600;
+    font-size: 14px; letter-spacing: 0.5px; border: 1px solid rgba(201,168,76,0.4);
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: all 0.25s ease;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: relative; z-index: 2;
+    display: flex; gap: 60px; margin-top: 70px; justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.9s 0.6s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-heading); font-size: 32px; font-weight: 700;
+    color: var(--gold); display: block; line-height: 1;
+  }
+  .stat-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--steel-light); margin-top: 4px; }
+  .stat-sep { width: 1px; background: rgba(201,168,76,0.2); height: 50px; align-self: center; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ══════════════════════════════════════
+     SECTIONS
+  ══════════════════════════════════════ */
+  .section { padding: 90px 5vw; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-family: var(--font-heading); font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700; color: var(--parchment); line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 16px; font-weight: 300; font-style: italic; color: var(--steel-light);
+    max-width: 500px; margin: 0 auto; line-height: 1.7;
+  }
+  .section-rule {
+    width: 50px; height: 2px; background: var(--gold);
+    margin: 20px auto 0;
+  }
+
+  /* DUYURULAR */
+  #duyurular { background: var(--ink); }
+  .duyuru-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .duyuru-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-left: 3px solid var(--gold);
+    padding: 28px 28px 24px;
+    position: relative; overflow: hidden;
+    transition: all 0.3s ease; cursor: pointer;
+  }
+  .duyuru-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .duyuru-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+  .duyuru-card:hover::before { opacity: 1; }
+  .duyuru-badge {
+    display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 4px 10px;
+    margin-bottom: 14px;
+  }
+  .badge-yeni { background: rgba(139,26,43,0.3); color: #e06070; border: 1px solid rgba(139,26,43,0.4); }
+  .badge-etkinlik { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+  .badge-genel { background: rgba(58,74,92,0.4); color: var(--mist); border: 1px solid rgba(90,112,128,0.3); }
+  .duyuru-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--parchment); margin-bottom: 10px; line-height: 1.3; }
+  .duyuru-card p { font-size: 14px; font-weight: 300; color: var(--steel-light); line-height: 1.7; margin-bottom: 18px; }
+  .duyuru-meta { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--steel-light); letter-spacing: 0.5px; }
+  .duyuru-meta svg { width: 13px; height: 13px; opacity: 0.6; }
+
+  /* ETKİNLİKLER */
+  #etkinlikler { background: #0b0b11; }
+  .etkinlik-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  .etkinlik-item {
+    display: grid; grid-template-columns: 100px 1fr auto;
+    gap: 28px; align-items: start;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 32px;
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .etkinlik-item::after {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 0; background: var(--crimson);
+    transition: width 0.3s ease;
+  }
+  .etkinlik-item:hover { border-color: rgba(201,168,76,0.25); transform: translateX(4px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+  .etkinlik-item:hover::after { width: 3px; }
+  .etkinlik-date {
+    text-align: center; background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2); padding: 14px 10px;
+  }
+  .etkinlik-date .day { font-family: var(--font-heading); font-size: 32px; font-weight: 900; color: var(--gold); line-height: 1; }
+  .etkinlik-date .month { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mist); margin-top: 4px; }
+  .etkinlik-info h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--parchment); margin-bottom: 8px; }
+  .etkinlik-info p { font-size: 14px; font-weight: 300; color: var(--steel-light); line-height: 1.6; margin-bottom: 14px; }
+  .etkinlik-meta-row { display: flex; flex-wrap: wrap; gap: 16px; }
+  .etkinlik-meta-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mist); opacity: 0.7; }
+  .etkinlik-meta-item svg { width: 13px; height: 13px; }
+  .etkinlik-action { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; justify-content: center; }
+  .btn-katil {
+    background: var(--crimson); color: white;
+    padding: 10px 22px; font-size: 13px; font-weight: 600; font-family: var(--font-heading);
+    letter-spacing: 0.5px; border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; white-space: nowrap;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .btn-katil:hover { background: var(--crimson-light); transform: translateY(-1px); }
+  .btn-katil.full { background: rgba(90,112,128,0.3); border: 1px solid rgba(90,112,128,0.3); color: var(--steel-light); cursor: not-allowed; }
+  .kapasite-bar { width: 80px; }
+  .kapasite-label { font-size: 11px; color: var(--steel-light); margin-bottom: 5px; text-align: right; }
+  .kapasite-track { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .kapasite-fill { height: 100%; border-radius: 2px; background: var(--gold); transition: width 0.5s ease; }
+  .kapasite-fill.warn { background: #c95a2a; }
+
+  /* GALERİ */
+  #galeri { background: var(--ink); }
+  .galeri-tabs { display: flex; gap: 0; margin-bottom: 36px; max-width: 1100px; margin-left: auto; margin-right: auto; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .galeri-tab {
+    padding: 12px 24px; font-size: 13px; font-family: var(--font-heading); font-weight: 600;
+    color: var(--steel-light); background: none; border: none; cursor: pointer;
+    letter-spacing: 0.5px; position: relative; transition: color 0.2s;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .galeri-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .galeri-tab:hover { color: var(--parchment); }
+
+  .galeri-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto; }
+  .galeri-item {
+    aspect-ratio: 4/3; position: relative; overflow: hidden; cursor: pointer;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  }
+  .galeri-item .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; color: var(--steel-light); font-size: 13px; font-weight: 300;
+    transition: all 0.4s ease;
+  }
+  .galeri-item .img-placeholder svg { width: 36px; height: 36px; opacity: 0.4; transition: opacity 0.3s; }
+  .galeri-item:hover .img-placeholder { background: rgba(201,168,76,0.06); }
+  .galeri-item:hover .img-placeholder svg { opacity: 0.7; }
+  .galeri-overlay {
+    position: absolute; inset: 0; background: rgba(14,14,20,0.85);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s; padding: 20px; text-align: center;
+  }
+  .galeri-item:hover .galeri-overlay { opacity: 1; }
+  .galeri-overlay p { font-size: 13px; color: var(--parchment); font-weight: 300; line-height: 1.5; }
+  .galeri-overlay small { font-size: 11px; color: var(--gold); letter-spacing: 1px; margin-top: 6px; display: block; text-transform: uppercase; }
+  .galeri-item.video-item::before {
+    content: '▶'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px; color: var(--gold); z-index: 3;
+    width: 52px; height: 52px; border: 2px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-indent: 3px;
+  }
+  .galeri-load-more { text-align: center; margin-top: 40px; }
+
+  /* ÜYE KAYIT */
+  #uye-kayit { background: #0b0b11; }
+  .kayit-wrap { max-width: 680px; margin: 0 auto; }
+  .kayit-form {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 52px 52px 44px;
+    position: relative;
+  }
+  .kayit-form::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 2px; background: var(--gold);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .form-group label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mist); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--parchment); font-family: var(--font-body); font-size: 14px;
+    padding: 13px 16px; outline: none;
+    transition: border-color 0.2s;
+    appearance: none; -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(205,213,220,0.3); }
+  .form-group select option { background: #1a1a24; color: var(--parchment); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-check { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 28px; }
+  .form-check input[type="checkbox"] { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; accent-color: var(--gold); cursor: pointer; }
+  .form-check label { font-size: 13px; color: var(--steel-light); line-height: 1.5; cursor: pointer; }
+  .form-check a { color: var(--gold); text-decoration: none; }
+  .btn-submit {
+    width: 100%; background: var(--gold); color: var(--ink);
+    padding: 16px; font-family: var(--font-heading); font-weight: 700;
+    font-size: 15px; letter-spacing: 1px; text-transform: uppercase;
+    border: none; cursor: pointer; transition: all 0.25s;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .form-note { text-align: center; margin-top: 16px; font-size: 12px; color: var(--steel-light); }
+  .form-success { display: none; text-align: center; padding: 60px 20px; }
+  .form-success .success-icon { font-size: 48px; margin-bottom: 16px; }
+  .form-success h3 { font-family: var(--font-heading); font-size: 24px; color: var(--gold); margin-bottom: 10px; }
+  .form-success p { font-size: 15px; color: var(--steel-light); font-weight: 300; }
+
+  /* HAKKIMIZDA */
+  #hakkimizda { background: var(--ink); }
+  .hakkimizda-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hakkimizda-text p { font-size: 16px; font-weight: 300; font-style: italic; color: var(--mist); line-height: 1.85; margin-bottom: 20px; }
+  .hakkimizda-values { display: flex; flex-direction: column; gap: 20px; }
+  .value-item { display: flex; gap: 16px; align-items: flex-start; }
+  .value-num { font-family: var(--font-heading); font-size: 32px; font-weight: 900; color: rgba(201,168,76,0.2); line-height: 1; flex-shrink: 0; width: 44px; }
+  .value-content h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--parchment); margin-bottom: 4px; }
+  .value-content p { font-size: 13px; font-weight: 300; color: var(--steel-light); line-height: 1.6; }
+
+  /* FOOTER */
+  footer {
+    background: #080810; border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 60px 5vw 30px;
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .emblem-lg {
+    width: 48px; height: 48px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-weight: 900; font-size: 20px;
+    color: var(--ink); margin-bottom: 14px;
+  }
+  .footer-brand h3 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--parchment); margin-bottom: 10px; }
+  .footer-brand p { font-size: 13px; font-weight: 300; color: var(--steel-light); line-height: 1.7; }
+  .footer-col h4 { font-family: var(--font-heading); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 13px; font-weight: 300; color: var(--steel-light); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--parchment); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .footer-bottom p { font-size: 12px; color: var(--steel-light); }
+  .social-links { display: flex; gap: 12px; }
+  .social-link {
+    width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--steel-light); text-decoration: none; font-size: 13px;
+    transition: all 0.2s;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+    background: #1a1a24; border: 1px solid var(--gold); border-left: 3px solid var(--gold);
+    padding: 14px 20px; max-width: 300px;
+    transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .toast.show { transform: translateX(0); }
+  .toast h5 { font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+  .toast p { font-size: 12px; color: var(--mist); font-weight: 300; }
+
+  /* MOBILE NAV */
+  .mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: rgba(14,14,20,0.98); backdrop-filter: blur(20px);
+    padding: 20px; z-index: 999;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .mobile-menu ul a { display: block; padding: 12px 16px; color: var(--mist); text-decoration: none; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .mobile-menu ul a:hover { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .etkinlik-item { grid-template-columns: 80px 1fr; }
+    .etkinlik-action { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; }
+    .hakkimizda-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .form-row { grid-template-columns: 1fr; }
+    .kayit-form { padding: 36px 28px 32px; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { gap: 32px; }
+    .stat-sep { display: none; }
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .galeri-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ACTIVE SECTION HIGHLIGHT */
+  .nav-links a.active { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <h5>✓ Kaydınız Alındı!</h5>
+  <p>Üyelik başvurunuz incelemeye alındı. En kısa sürede size ulaşacağız.</p>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#duyurular" onclick="closeMobile()">Duyurular</a></li>
+    <li><a href="#etkinlikler" onclick="closeMobile()">Etkinlikler</a></li>
+    <li><a href="#galeri" onclick="closeMobile()">Galeri</a></li>
+    <li><a href="#hakkimizda" onclick="closeMobile()">Hakkımızda</a></li>
+    <li><a href="#uye-kayit" onclick="closeMobile()" style="color:var(--gold);font-weight:600;">Üye Ol</a></li>
+  </ul>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="emblem">Σ</div>
+    <div class="nav-logo-text">
+      Siyasal Düşünceler
+      <span>Topluluğu</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#duyurular">Duyurular</a></li>
+    <li><a href="#etkinlikler">Etkinlikler</a></li>
+    <li><a href="#galeri">Galeri</a></li>
+    <li><a href="#hakkimizda">Hakkımızda</a></li>
+    <li><a href="#uye-kayit" class="nav-cta">Üye Ol</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Est. 2019 · Üniversite Öğrenci Topluluğu</div>
+    <h1>Siyasal <em>Düşünceler</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Fikirlerin çarpıştığı, düşüncelerin şekillendiği, bakış açılarının derinleştiği bir akademik platform.</p>
+    <div class="hero-actions">
+      <a href="#etkinlikler" class="btn-primary">Etkinliklere Katıl</a>
+      <a href="#uye-kayit" class="btn-secondary">Topluluğa Katıl</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num" id="count1">0</span>
+      <div class="stat-label">Aktif Üye</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <span class="stat-num" id="count2">0</span>
+      <div class="stat-label">Etkinlik Düzenlendi</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <span class="stat-num" id="count3">0</span>
+      <div class="stat-label">Yıllık Deneyim</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <span class="stat-num" id="count4">0</span>
+      <div class="stat-label">Panel & Konferans</div>
+    </div>
+  </div>
+</section>
+
+<!-- DUYURULAR -->
+<section class="section" id="duyurular">
+  <div class="section-header reveal">
+    <span class="section-tag">Son Güncellemeler</span>
+    <h2 class="section-title">Duyurular & Haberler</h2>
+    <p class="section-desc">Topluluğumuzdan en güncel haberler ve önemli duyurular.</p>
+    <div class="section-rule"></div>
+  </div>
+  <div class="duyuru-grid">
+    <div class="duyuru-card reveal" style="transition-delay:0.1s">
+      <span class="duyuru-badge badge-yeni">Yeni</span>
+      <h3>2025–2026 Akademik Yılı Başvuruları Başladı</h3>
+      <p>Bu yıl topluluğumuza katılmak isteyenler için başvuru süreci resmi olarak açılmıştır. Sınırlı kontenjan nedeniyle erken başvuru önerilir.</p>
+      <div class="duyuru-meta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        12 Şubat 2026
+      </div>
+    </div>
+    <div class="duyuru-card reveal" style="transition-delay:0.2s">
+      <span class="duyuru-badge badge-etkinlik">Etkinlik</span>
+      <h3>İlkbahar Konferansı Konuşmacıları Açıklandı</h3>
+      <p>Mart ayında düzenlenecek yıllık konferansımızın konuşmacı kadrosu netleşti. Bu yılın teması: "Demokrasi ve Dijital Dönüşüm".</p>
+      <div class="duyuru-meta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        8 Şubat 2026
+      </div>
+    </div>
+    <div class="duyuru-card reveal" style="transition-delay:0.3s">
+      <span class="duyuru-badge badge-genel">Genel</span>
+      <h3>Yeni Web Sitemiz Yayında!</h3>
+      <p>Topluluğumuzun yenilenmiş web sitesi artık aktif. Etkinlikler, galeri ve üye kayıt işlemlerini buradan takip edebilirsiniz.</p>
+      <div class="duyuru-meta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        1 Şubat 2026
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETKİNLİKLER -->
+<section class="section" id="etkinlikler">
+  <div class="section-header reveal">
+    <span class="section-tag">Yaklaşan & Geçmiş</span>
+    <h2 class="section-title">Etkinlikler</h2>
+    <p class="section-desc">Paneller, konferanslar, atölye çalışmaları ve tartışma oturumları.</p>
+    <div class="section-rule"></div>
+  </div>
+  <div class="etkinlik-list">
+
+    <div class="etkinlik-item reveal">
+      <div class="etkinlik-date"><div class="day">20</div><div class="month">Şub</div></div>
+      <div class="etkinlik-info">
+        <h3>Panel: Küresel Düzende Güç Dengesi</h3>
+        <p>Uluslararası ilişkiler perspektifinden günümüz küresel güç rekabetini, çok kutupluluğun yükselişini ve Türkiye'nin konumunu ele alacağımız interaktif panel.</p>
+        <div class="etkinlik-meta-row">
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            18:30 – 20:30
+          </span>
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            D Blok Amfisi, 202
+          </span>
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Kontenjan: 120
+          </span>
+        </div>
+      </div>
+      <div class="etkinlik-action">
+        <div class="kapasite-bar">
+          <div class="kapasite-label">68%</div>
+          <div class="kapasite-track"><div class="kapasite-fill" style="width:68%"></div></div>
+        </div>
+        <a href="#uye-kayit" class="btn-katil" onclick="showToastEvent('Küresel Düzende Güç Dengesi Paneli')">Kayıt Ol</a>
+      </div>
+    </div>
+
+    <div class="etkinlik-item reveal" style="transition-delay:0.1s">
+      <div class="etkinlik-date"><div class="day">05</div><div class="month">Mar</div></div>
+      <div class="etkinlik-info">
+        <h3>Konferans: Demokrasi ve Dijital Dönüşüm</h3>
+        <p>Dijital teknolojilerin demokratik süreçler üzerindeki etkilerini, dezenformasyonla mücadeleyi ve e-devlet uygulamalarını tartışacağımız yıllık konferans.</p>
+        <div class="etkinlik-meta-row">
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            10:00 – 17:00
+          </span>
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Kongre Merkezi, Salon A
+          </span>
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Kontenjan: 250
+          </span>
+        </div>
+      </div>
+      <div class="etkinlik-action">
+        <div class="kapasite-bar">
+          <div class="kapasite-label">91%</div>
+          <div class="kapasite-track"><div class="kapasite-fill warn" style="width:91%"></div></div>
+        </div>
+        <a href="#uye-kayit" class="btn-katil" onclick="showToastEvent('Yıllık Konferans')">Kayıt Ol</a>
+      </div>
+    </div>
+
+    <div class="etkinlik-item reveal" style="transition-delay:0.2s">
+      <div class="etkinlik-date"><div class="day">18</div><div class="month">Mar</div></div>
+      <div class="etkinlik-info">
+        <h3>Atölye: Siyasi Analiz Yazarlığı</h3>
+        <p>Etkin bir siyasi analizin nasıl yazılacağını, kaynak kullanımını ve akademik üslubu uygulamalı olarak öğreneceğiniz küçük gruplu atölye çalışması.</p>
+        <div class="etkinlik-meta-row">
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            14:00 – 17:00
+          </span>
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Kütüphane, Çalışma Odası 3
+          </span>
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Kontenjan: 25
+          </span>
+        </div>
+      </div>
+      <div class="etkinlik-action">
+        <div class="kapasite-bar">
+          <div class="kapasite-label">100%</div>
+          <div class="kapasite-track"><div class="kapasite-fill warn" style="width:100%"></div></div>
+        </div>
+        <a class="btn-katil full">Dolu</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERİ -->
+<section class="section" id="galeri">
+  <div class="section-header reveal">
+    <span class="section-tag">Anılar & Belgeleme</span>
+    <h2 class="section-title">Galeri</h2>
+    <p class="section-desc">Etkinliklerimizden kareler ve topluluk anıları.</p>
+    <div class="section-rule"></div>
+  </div>
+  <div class="galeri-tabs reveal">
+    <button class="galeri-tab active" onclick="switchTab(this,'foto')">Fotoğraflar</button>
+    <button class="galeri-tab" onclick="switchTab(this,'video')">Videolar</button>
+  </div>
+  <div class="galeri-grid" id="galeriGrid">
+    <!-- Fotograf items -->
+    <div class="galeri-item reveal" style="transition-delay:0.05s">
+      <div class="img-placeholder" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>2024 Yıllık Konferans</span>
+      </div>
+      <div class="galeri-overlay"><p>Yıllık Konferans açılış töreni</p><small>Mart 2024</small></div>
+    </div>
+    <div class="galeri-item reveal" style="transition-delay:0.1s">
+      <div class="img-placeholder" style="background:linear-gradient(135deg,#1a1220,#2a1628)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Panel: AB-Türkiye İlişkileri</span>
+      </div>
+      <div class="galeri-overlay"><p>Panel tartışmaları ve soru-cevap oturumu</p><small>Kasım 2024</small></div>
+    </div>
+    <div class="galeri-item reveal" style="transition-delay:0.15s">
+      <div class="img-placeholder" style="background:linear-gradient(135deg,#0d1b12,#162010)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Münazara Gecesi</span>
+      </div>
+      <div class="galeri-overlay"><p>Bahar dönemi münazara etkinliği</p><small>Nisan 2024</small></div>
+    </div>
+    <div class="galeri-item reveal" style="transition-delay:0.2s">
+      <div class="img-placeholder" style="background:linear-gradient(135deg,#1e1208,#281a04)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Toplantı & Workshop</span>
+      </div>
+      <div class="galeri-overlay"><p>Aylık üye buluşması ve planlama toplantısı</p><small>Ekim 2024</small></div>
+    </div>
+    <div class="galeri-item reveal" style="transition-delay:0.25s">
+      <div class="img-placeholder" style="background:linear-gradient(135deg,#0e1520,#111c2a)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Mezuniyet Töreni 2024</span>
+      </div>
+      <div class="galeri-overlay"><p>2023-24 mezun üyelerle veda fotoğrafı</p><small>Haziran 2024</small></div>
+    </div>
+    <div class="galeri-item reveal" style="transition-delay:0.3s">
+      <div class="img-placeholder" style="background:linear-gradient(135deg,#1a0e14,#20101a)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Gezimiz: Ankara TBMM</span>
+      </div>
+      <div class="galeri-overlay"><p>TBMM gezisi ve milletvekili görüşmesi</p><small>Mayıs 2024</small></div>
+    </div>
+  </div>
+
+  <div class="galeri-load-more reveal">
+    <button class="btn-secondary" onclick="showToastEvent('Tüm galeri yakında yüklenecek')">Daha Fazla Göster</button>
+  </div>
+</section>
+
+<!-- HAKKIMIZDA -->
+<section class="section" id="hakkimizda">
+  <div class="section-header reveal">
+    <span class="section-tag">Kim Biz?</span>
+    <h2 class="section-title">Hakkımızda</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="hakkimizda-inner">
+    <div class="hakkimizda-text reveal">
+      <p>Siyasal Düşünceler Topluluğu, 2019 yılında bir grup öğrencinin siyasi fikir ve teorileri özgürce tartışabileceği, akademik bir ortam yaratma hayaliyle kuruldu.</p>
+      <p>Bugün, farklı bölümlerden 200'den fazla aktif üyemizle, yılda onlarca etkinlik düzenliyor; paneller, konferanslar, münazaralar ve atölye çalışmaları aracılığıyla düşüncenin sınırlarını genişletiyoruz.</p>
+      <p>Her fikrin sesinin duyulduğu, her bakış açısının saygıyla karşılandığı bir alan inşa etmeye devam ediyoruz.</p>
+      <a href="#uye-kayit" class="btn-primary" style="margin-top:10px;display:inline-block">Aramıza Katıl</a>
+    </div>
+    <div class="hakkimizda-values reveal" style="transition-delay:0.2s">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <div class="value-content">
+          <h4>Özgür Düşünce</h4>
+          <p>Her siyasi yelpazeden fikre saygı duyuyor, ideolojik çoğulculuğu önemsiyoruz.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <div class="value-content">
+          <h4>Akademik Titizlik</h4>
+          <p>Kanıta dayalı argümanlar üretmeyi, kaynaklara önem vermeyi temel ilke olarak benimsiyoruz.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <div class="value-content">
+          <h4>Kapsayıcı Ortam</h4>
+          <p>Farklı bölüm, sınıf ve arka planlardan öğrencileri bir araya getiren kucaklayıcı bir topluluk.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">04</div>
+        <div class="value-content">
+          <h4>Sürekli Gelişim</h4>
+          <p>Her etkinlikte, her tartışmada birlikte büyüyüp öğreniyoruz.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜYE KAYIT -->
+<section class="section" id="uye-kayit">
+  <div class="section-header reveal">
+    <span class="section-tag">Aramıza Katıl</span>
+    <h2 class="section-title">Üyelik Başvurusu</h2>
+    <p class="section-desc">Topluluğumuzun bir parçası olmak için formu doldurun.</p>
+    <div class="section-rule"></div>
+  </div>
+  <div class="kayit-wrap">
+    <div class="kayit-form reveal">
+      <div id="formContent">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ad</label>
+            <input type="text" placeholder="Adınız" id="fname">
+          </div>
+          <div class="form-group">
+            <label>Soyad</label>
+            <input type="text" placeholder="Soyadınız" id="lname">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>E-Posta Adresi</label>
+          <input type="email" placeholder="ornek@universite.edu.tr" id="email">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Bölüm / Fakülte</label>
+            <select id="bolum">
+              <option value="">Bölümünüzü seçin</option>
+              <option>Siyaset Bilimi ve Kamu Yönetimi</option>
+              <option>Uluslararası İlişkiler</option>
+              <option>Hukuk</option>
+              <option>İktisat</option>
+              <option>Sosyoloji</option>
+              <option>Felsefe</option>
+              <option>Tarih</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Sınıf</label>
+            <select id="sinif">
+              <option value="">Sınıfınızı seçin</option>
+              <option>1. Sınıf</option>
+              <option>2. Sınıf</option>
+              <option>3. Sınıf</option>
+              <option>4. Sınıf</option>
+              <option>Yüksek Lisans</option>
+              <option>Doktora</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Kendinizi Tanıtın (İsteğe Bağlı)</label>
+          <textarea placeholder="Topluluğumuza neden katılmak istiyorsunuz? İlgi alanlarınız neler?" id="tanitim"></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="kvkk">
+          <label for="kvkk">Kişisel verilerimin topluluğun faaliyetleri kapsamında işlenmesine izin veriyorum. <a href="#">KVKK Aydınlatma Metni</a>'ni okudum ve kabul ediyorum.</label>
+        </div>
+        <button class="btn-submit" onclick="submitForm()">BAŞVURUYU GÖNDER</button>
+        <p class="form-note">Başvurunuz incelendikten sonra e-posta ile bilgilendirileceksiniz.</p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">✦</div>
+        <h3>Başvurunuz Alındı!</h3>
+        <p>Yakında sizi e-posta yoluyla bilgilendireceğiz. Topluluğumuza hoş geldiniz!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="emblem-lg">Σ</div>
+      <h3>Siyasal Düşünceler Topluluğu</h3>
+      <p>Fikirlerin özgürce tartışıldığı, farklı bakış açılarının buluştuğu akademik bir öğrenci platformu.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Hızlı Erişim</h4>
+      <ul>
+        <li><a href="#duyurular">Duyurular</a></li>
+        <li><a href="#etkinlikler">Etkinlikler</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#hakkimizda">Hakkımızda</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Topluluk</h4>
+      <ul>
+        <li><a href="#uye-kayit">Üye Ol</a></li>
+        <li><a href="#">Yönetim Kurulu</a></li>
+        <li><a href="#">Tüzük</a></li>
+        <li><a href="#">İletişim</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>İletişim</h4>
+      <ul>
+        <li><a href="#">sdt@universite.edu.tr</a></li>
+        <li><a href="#">D Blok, Kat 2, Oda 14</a></li>
+        <li><a href="#">Her Çarşamba 17:00</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Siyasal Düşünceler Topluluğu. Tüm hakları saklıdır.</p>
+    <div class="social-links">
+      <a href="#" class="social-link">in</a>
+      <a href="#" class="social-link">tw</a>
+      <a href="#" class="social-link">ig</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── COUNTER ANIMATION ──
+function animateCounter(el, target, duration) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.textContent = target + (target < 10 ? '' : '+'); clearInterval(timer); }
+    else el.textContent = Math.floor(start) + '+';
+  }, 16);
+}
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    animateCounter(document.getElementById('count1'), 200, 1500);
+    animateCounter(document.getElementById('count2'), 80, 1800);
+    animateCounter(document.getElementById('count3'), 6, 1000);
+    animateCounter(document.getElementById('count4'), 24, 1400);
+  }, 500);
+});
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── ACTIVE NAV ──
+const sections = ['duyurular','etkinlikler','galeri','hakkimizda','uye-kayit'];
+window.addEventListener('scroll', () => {
+  const pos = window.scrollY + 100;
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (el && link) {
+      if (pos >= el.offsetTop && pos < el.offsetTop + el.offsetHeight)
+        link.classList.add('active');
+      else link.classList.remove('active');
+    }
+  });
+});
+
+// ── MOBILE MENU ──
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// ── GALERİ TABS ──
+function switchTab(btn, type) {
+  document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const grid = document.getElementById('galeriGrid');
+  if (type === 'video') {
+    grid.innerHTML = `
+      <div class="galeri-item video-item reveal visible" style="background:linear-gradient(135deg,#0e1520,#111c2a)">
+        <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Konferans Açılış Konuşması</span></div>
+        <div class="galeri-overlay"><p>2024 Yıllık Konferans — Açılış</p><small>15 dk · Mart 2024</small></div>
+      </div>
+      <div class="galeri-item video-item reveal visible" style="background:linear-gradient(135deg,#1a0e14,#20101a)">
+        <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Panel Özeti: Küresel Güç</span></div>
+        <div class="galeri-overlay"><p>Panel kayıt özeti</p><small>28 dk · Şubat 2024</small></div>
+      </div>
+      <div class="galeri-item video-item reveal visible" style="background:linear-gradient(135deg,#0d1b12,#162010)">
+        <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Münazara: Popülizm</span></div>
+        <div class="galeri-overlay"><p>Bahar münazarası tam kayıt</p><small>45 dk · Nisan 2024</small></div>
+      </div>`;
+  } else {
+    location.reload(); // reset
+  }
+}
+
+// ── FORM SUBMIT ──
+function submitForm() {
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const kvkk = document.getElementById('kvkk').checked;
+  if (!fname || !email) { alert('Lütfen ad ve e-posta alanlarını doldurun.'); return; }
+  if (!kvkk) { alert('Lütfen KVKK metnini kabul edin.'); return; }
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+  showToast();
+}
+
+// ── TOAST ──
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+function showToastEvent(name) {
+  const t = document.getElementById('toast');
+  t.querySelector('h5').textContent = '✓ Kayıt Formu Açıldı!';
+  t.querySelector('p').textContent = name + ' için formu doldurun.';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>

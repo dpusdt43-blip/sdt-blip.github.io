@@ -3,71 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SDT Yönetim Paneli</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:wght@300;600&display=swap" rel="stylesheet">
+<title>SDT | Genel Yönetim Merkezi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root { --ink: #0e0e14; --gold: #c9a84c; --crimson: #8b1a2b; --parchment: #f5f0e8; }
+  :root { --ink: #0e0e14; --gold: #c9a84c; --crimson: #8b1a2b; --parchment: #f5f0e8; --panel-bg: #121218; }
   * { box-sizing: border-box; font-family: 'Source Serif 4', serif; }
-  body { background: var(--ink); color: var(--parchment); margin: 0; padding: 0; min-height: 100vh; }
+  body { background: var(--ink); color: var(--parchment); margin: 0; min-height: 100vh; }
   
-  /* GİRİŞ EKRANI */
-  #login-screen {
-    height: 100vh; display: flex; align-items: center; justify-content: center;
-    position: fixed; inset: 0; background: var(--ink); z-index: 999;
+  /* GİRİŞ EKRANI STİLLERİ */
+  #login-screen { position: fixed; inset: 0; background: var(--ink); display: flex; align-items: center; justify-content: center; z-index: 999; }
+  .login-box { background: rgba(255,255,255,0.03); padding: 40px; border: 1px solid var(--gold); border-top: 4px solid var(--gold); width: 100%; max-width: 360px; text-align: center; }
+  
+  /* PANEL GENEL */
+  #admin-panel { display: none; display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  
+  /* SOL MENÜ */
+  .sidebar { background: #08080a; border-right: 1px solid #222; padding: 20px; display: flex; flex-direction: column; }
+  .brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 20px; margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+  .brand span { font-size: 32px; }
+  .nav-btn { 
+    background: transparent; border: none; color: #888; text-align: left; padding: 12px 15px; 
+    margin-bottom: 5px; cursor: pointer; transition: all 0.2s; border-radius: 4px; font-size: 14px;
   }
-  .login-box {
-    background: rgba(255,255,255,0.05); padding: 40px; border: 1px solid var(--gold);
-    border-top: 4px solid var(--gold); width: 350px; text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  }
-  input, textarea, select {
-    width: 100%; padding: 12px; margin: 8px 0; background: #1a1a20;
-    border: 1px solid #333; color: white; outline: none; font-size: 14px;
+  .nav-btn:hover { background: rgba(255,255,255,0.05); color: var(--parchment); }
+  .nav-btn.active { background: rgba(201,168,76,0.15); color: var(--gold); border-left: 3px solid var(--gold); }
+  
+  .logout-btn { margin-top: auto; background: #1a1a20; color: #aaa; border: 1px solid #333; }
+
+  /* SAĞ İÇERİK */
+  .main-content { padding: 40px; overflow-y: auto; background: var(--panel-bg); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px; color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 15px; }
+  
+  .content-section { display: none; animation: fadeIn 0.3s; }
+  .content-section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* FORMLAR & KARTLAR */
+  .card { background: rgba(255,255,255,0.02); border: 1px solid #2a2a35; padding: 25px; margin-bottom: 20px; border-radius: 4px; }
+  .form-group { margin-bottom: 15px; }
+  .form-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px; }
+  input, textarea, select { 
+    width: 100%; background: #1a1a20; border: 1px solid #333; color: var(--parchment); padding: 12px; 
+    font-size: 14px; border-radius: 4px; outline: none; transition: border 0.2s;
   }
   input:focus, textarea:focus { border-color: var(--gold); }
-  button {
-    background: var(--gold); color: var(--ink); border: none; padding: 12px;
-    cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;
-    font-family: 'Playfair Display', serif; letter-spacing: 1px;
-    transition: all 0.2s;
-  }
-  button:hover { background: #e2c97e; transform: translateY(-2px); }
-  .delete-btn { background: var(--crimson); color: white; width: auto; font-size: 11px; padding: 6px 12px; margin-top:0; }
-  .delete-btn:hover { background: #b82c40; }
-
-  /* PANEL */
-  #admin-panel { display: none; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-  header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 20px; margin-bottom: 30px; }
-  h2 { font-family: 'Playfair Display', serif; color: var(--gold); margin: 0; }
   
-  .tabs { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 1px solid #333; }
-  .tab-btn { 
-    background: transparent; border: none; color: #888; 
-    padding: 10px 20px; width: auto; margin: 0; border-bottom: 2px solid transparent;
-    cursor: pointer;
-  }
-  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .tab-btn:hover { color: var(--parchment); }
+  .btn-primary { background: var(--gold); color: var(--ink); border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 2px; }
+  .btn-primary:hover { background: #e2c97e; }
+  
+  /* TABLO (BAŞVURULAR İÇİN) */
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+  .data-table th { text-align: left; color: #666; font-weight: normal; border-bottom: 1px solid #333; padding: 10px; font-size: 12px; }
+  .data-table td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; }
+  .data-table tr:hover { background: rgba(255,255,255,0.02); }
+  
+  .badge { padding: 3px 8px; border-radius: 3px; font-size: 10px; text-transform: uppercase; }
+  .badge-new { background: rgba(201,168,76,0.2); color: var(--gold); }
 
-  .content-section { display: none; animation: fadeIn 0.5s; }
-  .content-section.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  .form-card { background: rgba(255,255,255,0.03); padding: 25px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; }
-  .form-card h3 { margin-top: 0; color: var(--gold); font-size: 18px; }
-
-  .item-list { margin-top: 30px; display: grid; gap: 15px; }
-  .item {
-    background: rgba(255,255,255,0.02); border-left: 3px solid var(--gold);
-    padding: 20px; display: flex; justify-content: space-between; align-items: flex-start;
-    transition: background 0.2s;
-  }
-  .item:hover { background: rgba(255,255,255,0.04); }
-  .item-content h4 { margin: 0 0 8px 0; color: var(--parchment); font-size: 18px; }
-  .item-content p { margin: 0 0 8px 0; color: #aaa; font-size: 14px; font-weight: 300; }
-  .tag { 
-    display: inline-block; font-size: 10px; text-transform: uppercase; 
-    padding: 4px 8px; background: rgba(201,168,76,0.1); color: var(--gold); letter-spacing: 1px;
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    #admin-panel { grid-template-columns: 1fr; }
+    .sidebar { display: none; } /* Mobilde menü gizli (geliştirilebilir) */
   }
 </style>
 </head>
@@ -75,79 +71,116 @@
 
 <div id="login-screen">
   <div class="login-box">
-    <div style="font-size:30px; color:var(--gold); margin-bottom:10px;">Σ</div>
-    <h2 style="margin-bottom:20px;">YÖNETİCİ GİRİŞİ</h2>
-    <input type="email" id="email" placeholder="E-Posta Adresi">
-    <input type="password" id="password" placeholder="Şifre">
-    <button onclick="login()">GİRİŞ YAP</button>
-    <p id="login-msg" style="color:var(--crimson); font-size:13px; margin-top:15px;"></p>
+    <div style="font-size:40px; color:var(--gold); margin-bottom:10px;">Σ</div>
+    <h2 style="margin:0 0 20px 0; font-family:'Playfair Display',serif;">Yönetim Paneli</h2>
+    <input type="email" id="email" placeholder="E-Posta" style="margin-bottom:10px;">
+    <input type="password" id="password" placeholder="Şifre" style="margin-bottom:20px;">
+    <button onclick="login()" class="btn-primary" style="width:100%">GİRİŞ YAP</button>
+    <p id="login-msg" style="color:var(--crimson); font-size:12px; margin-top:15px;"></p>
   </div>
 </div>
 
-<div id="admin-panel">
-  <header>
-    <div>
-      <h2>Yönetim Paneli</h2>
-      <small style="color:#666;">Siyasal Düşünceler Topluluğu</small>
-    </div>
-    <button onclick="logout()" style="width:auto; background:transparent; border:1px solid #444; color:#aaa; font-size:12px;">Çıkış Yap</button>
-  </header>
+<div id="admin-panel" style="display:none;">
+  <aside class="sidebar">
+    <div class="brand"><span>Σ</span> SDT Admin</div>
+    <button class="nav-btn active" onclick="showSection('dashboard')">📊 Gelen Başvurular</button>
+    <button class="nav-btn" onclick="showSection('settings')">⚙️ Genel Ayarlar</button>
+    <button class="nav-btn" onclick="showSection('duyurular')">📢 Duyurular</button>
+    <button class="nav-btn" onclick="showSection('etkinlikler')">📅 Etkinlikler</button>
+    <button class="logout-btn nav-btn" onclick="logout()">Çıkış Yap</button>
+  </aside>
 
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('duyurular')">Duyurular</button>
-    <button class="tab-btn" onclick="switchTab('etkinlikler')">Etkinlikler</button>
-  </div>
-
-  <div id="sec-duyurular" class="content-section active">
-    <div class="form-card">
-      <h3>📢 Yeni Duyuru Yayınla</h3>
-      <input type="text" id="d-baslik" placeholder="Duyuru Başlığı (Örn: Bahar Dönemi Kayıtları)">
-      <textarea id="d-icerik" rows="4" placeholder="Duyuru Detayı..."></textarea>
-      <div style="display:flex; gap:10px;">
-        <select id="d-etiket" style="flex:1">
-          <option value="Genel">Etiket: Genel</option>
-          <option value="Yeni">Etiket: Yeni</option>
-          <option value="Etkinlik">Etiket: Etkinlik</option>
-          <option value="Acil">Etiket: Önemli</option>
-        </select>
-        <input type="date" id="d-tarih" style="flex:1">
+  <main class="main-content">
+    
+    <section id="sec-dashboard" class="content-section active">
+      <h2 class="section-title">Üye Başvuruları</h2>
+      <div class="card">
+        <p style="color:#666; font-size:13px; margin-bottom:20px;">Web sitesindeki "Üye Ol" formunu dolduranlar buraya düşer.</p>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ad Soyad</th>
+                <th>Bölüm / Sınıf</th>
+                <th>E-Posta</th>
+                <th>Tarih</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="basvuru-list">
+              <tr><td colspan="5" style="text-align:center; padding:20px;">Yükleniyor...</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <button onclick="addDuyuru()">YAYINLA</button>
-    </div>
+    </section>
 
-    <h3 style="color:#666; font-size:14px; text-transform:uppercase; letter-spacing:1px;">Yayındaki Duyurular</h3>
-    <div class="item-list" id="duyuru-list">
-      <div style="text-align:center; color:#444; padding:20px;">Veriler yükleniyor...</div>
-    </div>
-  </div>
-
-  <div id="sec-etkinlikler" class="content-section">
-    <div class="form-card">
-      <h3>📅 Yeni Etkinlik Planla</h3>
-      <input type="text" id="e-baslik" placeholder="Etkinlik Adı (Örn: Demokrasi Paneli)">
-      <textarea id="e-aciklama" rows="3" placeholder="Kısa Açıklama"></textarea>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-        <input type="date" id="e-tarih">
-        <input type="text" id="e-saat" placeholder="Saat (14:00)">
-        <input type="text" id="e-konum" placeholder="Konum (Salon A)">
-        <input type="number" id="e-kontenjan" placeholder="Kontenjan (Örn: 100)">
+    <section id="sec-settings" class="content-section">
+      <h2 class="section-title">Site Genel Ayarları</h2>
+      <div class="card">
+        <h3 style="color:var(--gold); margin-top:0;">1. İletişim Bilgileri</h3>
+        <div class="form-group">
+          <label>E-Posta Adresi (Footer'da görünür)</label>
+          <input type="text" id="set-email" placeholder="ornek@dpu.edu.tr">
+        </div>
+        <div class="form-group">
+          <label>Adres / Ofis Bilgisi</label>
+          <input type="text" id="set-address" placeholder="İİBF, B Blok...">
+        </div>
+        <div class="form-group">
+          <label>Instagram / Sosyal Medya Linki</label>
+          <input type="text" id="set-social" placeholder="https://instagram.com/...">
+        </div>
       </div>
-      <button onclick="addEtkinlik()">ETKİNLİĞİ KAYDET</button>
-    </div>
 
-    <div class="item-list" id="etkinlik-list">
-      <div style="text-align:center; color:#444; padding:20px;">Veriler yükleniyor...</div>
-    </div>
-  </div>
+      <div class="card">
+        <h3 style="color:var(--gold); margin-top:0;">2. Hakkımızda Yazısı</h3>
+        <div class="form-group">
+          <label>Ana Sayfa Hakkımızda Metni</label>
+          <textarea id="set-about" rows="6" placeholder="Siyasal Düşünceler Topluluğu..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="saveSettings()">AYARLARI KAYDET</button>
+      </div>
+    </section>
+
+    <section id="sec-duyurular" class="content-section">
+      <h2 class="section-title">Duyuru Yönetimi</h2>
+      <div class="card">
+        <div class="form-group"><input type="text" id="d-baslik" placeholder="Başlık"></div>
+        <div class="form-group"><textarea id="d-icerik" placeholder="İçerik"></textarea></div>
+        <div style="display:flex; gap:10px;">
+          <input type="date" id="d-tarih">
+          <select id="d-etiket"><option>Genel</option><option>Yeni</option><option>Acil</option></select>
+          <button class="btn-primary" onclick="addDuyuru()">EKLE</button>
+        </div>
+      </div>
+      <div id="duyuru-list" style="margin-top:20px;"></div>
+    </section>
+
+    <section id="sec-etkinlikler" class="content-section">
+      <h2 class="section-title">Etkinlik Yönetimi</h2>
+      <div class="card">
+        <div class="form-group"><input type="text" id="e-baslik" placeholder="Etkinlik Adı"></div>
+        <div class="form-group"><textarea id="e-aciklama" placeholder="Açıklama"></textarea></div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <input type="date" id="e-tarih" style="flex:1">
+          <input type="text" id="e-saat" placeholder="Saat" style="flex:1">
+          <input type="text" id="e-konum" placeholder="Konum" style="flex:1">
+          <button class="btn-primary" onclick="addEtkinlik()">PLANLA</button>
+        </div>
+      </div>
+      <div id="etkinlik-list" style="margin-top:20px;"></div>
+    </section>
+
+  </main>
 </div>
 
 <script type="module">
-  // Senin verdiğin ayarları CDN versiyonuna uyarladım
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, onSnapshot, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // SENİN VERDİĞİN KONFİGÜRASYON
+  // 🔴 SENİN AYARLARIN BURAYA 🔴
   const firebaseConfig = {
     apiKey: "AIzaSyDPLsa0Vstirz25FU4JAp5oUcTHJXcOM5I",
     authDomain: "siyasal-dusunceler-toplulugu.firebaseapp.com",
@@ -158,150 +191,135 @@
     measurementId: "G-TE8JH9KR9G"
   };
 
-  // Uygulamayı Başlat
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // --- GİRİŞ İŞLEMLERİ ---
+  // --- GİRİŞ / ÇIKIŞ ---
   window.login = () => {
     const e = document.getElementById('email').value;
     const p = document.getElementById('password').value;
-    const msg = document.getElementById('login-msg');
-    
-    if(!e || !p) { msg.textContent = "Lütfen tüm alanları doldurun."; return; }
-    msg.textContent = "Giriş yapılıyor...";
-
-    signInWithEmailAndPassword(auth, e, p)
-      .then(() => msg.textContent = "")
-      .catch(err => {
-        console.error(err);
-        if(err.code === 'auth/invalid-credential') msg.textContent = "Hatalı e-posta veya şifre.";
-        else msg.textContent = "Hata: " + err.message;
-      });
+    signInWithEmailAndPassword(auth, e, p).catch(err => alert("Hata: " + err.message));
   }
-
   window.logout = () => signOut(auth);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('admin-panel').style.display = 'block';
-      subscribeData(); // Verileri canlı dinle
+      document.getElementById('admin-panel').style.display = 'grid'; // Grid yapısını bozmamak için
+      initApp();
     } else {
       document.getElementById('login-screen').style.display = 'flex';
       document.getElementById('admin-panel').style.display = 'none';
     }
   });
 
-  // --- VERİ EKLEME (DUYURU) ---
-  window.addDuyuru = async () => {
-    const baslik = document.getElementById('d-baslik').value;
-    const icerik = document.getElementById('d-icerik').value;
-    const etiket = document.getElementById('d-etiket').value;
-    const tarih = document.getElementById('d-tarih').value;
-
-    if(!baslik || !tarih) return alert("Başlık ve tarih zorunludur!");
-
-    try {
-      await addDoc(collection(db, "duyurular"), {
-        baslik, icerik, etiket, tarih,
-        timestamp: new Date()
-      });
-      alert("✅ Duyuru Başarıyla Yayınlandı!");
-      document.getElementById('d-baslik').value = '';
-      document.getElementById('d-icerik').value = '';
-    } catch(e) { 
-      console.error(e); 
-      alert("Hata: " + e.message); 
-    }
+  function initApp() {
+    subscribeBasvurular();
+    subscribeDuyurular();
+    subscribeEtkinlikler();
+    loadSettings();
   }
 
-  // --- VERİ EKLEME (ETKİNLİK) ---
-  window.addEtkinlik = async () => {
-    const baslik = document.getElementById('e-baslik').value;
-    if(!baslik) return alert("Etkinlik adı zorunlu!");
-
-    try {
-      await addDoc(collection(db, "etkinlikler"), {
-        baslik: baslik,
-        aciklama: document.getElementById('e-aciklama').value,
-        tarih: document.getElementById('e-tarih').value,
-        saat: document.getElementById('e-saat').value,
-        konum: document.getElementById('e-konum').value,
-        kontenjan: document.getElementById('e-kontenjan').value,
-        timestamp: new Date()
-      });
-      alert("✅ Etkinlik Planlandı!");
-      document.getElementById('e-baslik').value = '';
-      document.getElementById('e-aciklama').value = '';
-    } catch(e) { console.error(e); alert("Hata: " + e.message); }
-  }
-
-  // --- VERİ SİLME ---
-  window.deleteItem = async (col, id) => {
-    if(confirm("Bu içeriği kalıcı olarak silmek istiyor musunuz?")) {
-      await deleteDoc(doc(db, col, id));
-    }
-  }
-
-  // --- CANLI VERİ TAKİBİ (LİSTELEME) ---
-  function subscribeData() {
-    // Duyuruları Dinle
-    const qD = query(collection(db, "duyurular"), orderBy("timestamp", "desc"));
-    onSnapshot(qD, (snapshot) => {
-      const list = document.getElementById('duyuru-list');
+  // --- 1. BAŞVURULARI ÇEK ---
+  function subscribeBasvurular() {
+    const q = query(collection(db, "basvurular"), orderBy("timestamp", "desc"));
+    onSnapshot(q, (snap) => {
+      const list = document.getElementById('basvuru-list');
       list.innerHTML = "";
-      if(snapshot.empty) list.innerHTML = '<div style="text-align:center; color:#666;">Henüz hiç duyuru yok.</div>';
+      if(snap.empty) { list.innerHTML = "<tr><td colspan='5' style='text-align:center; padding:20px;'>Henüz başvuru yok.</td></tr>"; return; }
       
-      snapshot.forEach(doc => {
-        const d = doc.data();
+      snap.forEach(d => {
+        const data = d.data();
+        const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString('tr-TR') : '-';
         list.innerHTML += `
-          <div class="item">
-            <div class="item-content">
-              <h4>${d.baslik} <span class="tag">${d.etiket}</span></h4>
-              <p>${d.icerik ? d.icerik.substring(0, 100) + '...' : ''}</p>
-              <small style="color:#666;">📅 ${d.tarih}</small>
-            </div>
-            <button class="delete-btn" onclick="deleteItem('duyurular', '${doc.id}')">SİL</button>
-          </div>`;
-      });
-    });
-
-    // Etkinlikleri Dinle
-    const qE = query(collection(db, "etkinlikler"), orderBy("timestamp", "desc"));
-    onSnapshot(qE, (snapshot) => {
-      const list = document.getElementById('etkinlik-list');
-      list.innerHTML = "";
-      if(snapshot.empty) list.innerHTML = '<div style="text-align:center; color:#666;">Henüz planlanmış etkinlik yok.</div>';
-
-      snapshot.forEach(doc => {
-        const d = doc.data();
-        list.innerHTML += `
-          <div class="item">
-            <div class="item-content">
-              <h4>${d.baslik}</h4>
-              <p>📅 ${d.tarih || ''} | ⏰ ${d.saat || ''} | 📍 ${d.konum || ''}</p>
-            </div>
-            <button class="delete-btn" onclick="deleteItem('etkinlikler', '${doc.id}')">SİL</button>
-          </div>`;
+          <tr>
+            <td style="color:#fff; font-weight:bold;">${data.ad} ${data.soyad}</td>
+            <td>${data.bolum} <br><small style="color:#666">${data.sinif}</small></td>
+            <td>${data.email}</td>
+            <td>${date}</td>
+            <td><button style="background:#8b1a2b; border:none; color:#fff; padding:5px; cursor:pointer;" onclick="deleteItem('basvurular', '${d.id}')">Sil</button></td>
+          </tr>
+        `;
       });
     });
   }
 
-  // Tab Değiştirme
-  window.switchTab = (tab) => {
-    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('sec-' + tab).classList.add('active');
-    
-    // Tıklanan butonu aktif yap
-    // (Basit yöntem: DOM'dan bulup class ekle)
-    const buttons = document.querySelectorAll('.tab-btn');
-    if(tab === 'duyurular') buttons[0].classList.add('active');
-    else buttons[1].classList.add('active');
+  // --- 2. GENEL AYARLARI KAYDET / YÜKLE ---
+  window.saveSettings = async () => {
+    const settings = {
+      email: document.getElementById('set-email').value,
+      address: document.getElementById('set-address').value,
+      social: document.getElementById('set-social').value,
+      aboutText: document.getElementById('set-about').value
+    };
+    try {
+      // 'ayarlar' koleksiyonunda 'genel' adlı tek bir doküman tutacağız
+      await setDoc(doc(db, "ayarlar", "genel"), settings);
+      alert("✅ Ayarlar başarıyla güncellendi!");
+    } catch(e) { alert("Hata: " + e.message); }
+  }
+
+  async function loadSettings() {
+    const docSnap = await getDoc(doc(db, "ayarlar", "genel"));
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      document.getElementById('set-email').value = data.email || "";
+      document.getElementById('set-address').value = data.address || "";
+      document.getElementById('set-social').value = data.social || "";
+      document.getElementById('set-about').value = data.aboutText || "";
+    }
+  }
+
+  // --- STANDART FONKSİYONLAR ---
+  window.addDuyuru = async () => {
+     await addDoc(collection(db, "duyurular"), {
+       baslik: document.getElementById('d-baslik').value,
+       icerik: document.getElementById('d-icerik').value,
+       tarih: document.getElementById('d-tarih').value,
+       etiket: document.getElementById('d-etiket').value,
+       timestamp: new Date()
+     });
+     alert("Duyuru Eklendi");
+  }
+  
+  function subscribeDuyurular() {
+    onSnapshot(query(collection(db, "duyurular"), orderBy("timestamp", "desc")), (snap) => {
+       const div = document.getElementById('duyuru-list'); div.innerHTML = "";
+       snap.forEach(d => div.innerHTML += `<div class="card" style="padding:10px;">${d.data().baslik} <button onclick="deleteItem('duyurular','${d.id}')" style="float:right; color:red; background:none; border:none;">Sil</button></div>`);
+    });
+  }
+
+  window.addEtkinlik = async () => {
+     await addDoc(collection(db, "etkinlikler"), {
+       baslik: document.getElementById('e-baslik').value,
+       aciklama: document.getElementById('e-aciklama').value,
+       tarih: document.getElementById('e-tarih').value,
+       saat: document.getElementById('e-saat').value,
+       konum: document.getElementById('e-konum').value,
+       timestamp: new Date()
+     });
+     alert("Etkinlik Eklendi");
+  }
+
+  function subscribeEtkinlikler() {
+    onSnapshot(query(collection(db, "etkinlikler"), orderBy("timestamp", "desc")), (snap) => {
+       const div = document.getElementById('etkinlik-list'); div.innerHTML = "";
+       snap.forEach(d => div.innerHTML += `<div class="card" style="padding:10px;">${d.data().baslik} <button onclick="deleteItem('etkinlikler','${d.id}')" style="float:right; color:red; background:none; border:none;">Sil</button></div>`);
+    });
+  }
+
+  window.deleteItem = async (col, id) => {
+    if(confirm("Silmek istediğine emin misin?")) await deleteDoc(doc(db, col, id));
+  }
+
+  // Menü Geçişleri
+  window.showSection = (id) => {
+    document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('sec-' + id).classList.add('active');
+    event.target.classList.add('active');
   }
 </script>
-
 </body>
 </html>

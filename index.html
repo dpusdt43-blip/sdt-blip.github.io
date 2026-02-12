@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Siyasal Düşünceler Topluluğu</title>
+<title>Siyasal Düşünceler Topluluğu | DPÜ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Serif+Display&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
@@ -41,7 +41,7 @@
   ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
   /* ══════════════════════════════════════
-     NAVIGATION
+      NAVIGATION
   ══════════════════════════════════════ */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -99,7 +99,7 @@
   .hamburger span { width: 24px; height: 2px; background: var(--parchment); transition: all 0.3s; border-radius: 1px; }
 
   /* ══════════════════════════════════════
-     HERO
+      HERO
   ══════════════════════════════════════ */
   .hero {
     min-height: 100vh;
@@ -210,7 +210,7 @@
   }
 
   /* ══════════════════════════════════════
-     SECTIONS
+      SECTIONS
   ══════════════════════════════════════ */
   .section { padding: 90px 5vw; }
   .section-header { text-align: center; margin-bottom: 60px; }
@@ -330,10 +330,10 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 12px; color: var(--steel-light); font-size: 13px; font-weight: 300;
     transition: all 0.4s ease;
+    background-size: cover; background-position: center;
   }
   .galeri-item .img-placeholder svg { width: 36px; height: 36px; opacity: 0.4; transition: opacity 0.3s; }
-  .galeri-item:hover .img-placeholder { background: rgba(201,168,76,0.06); }
-  .galeri-item:hover .img-placeholder svg { opacity: 0.7; }
+  .galeri-item:hover .img-placeholder { background-color: rgba(201,168,76,0.06); }
   .galeri-overlay {
     position: absolute; inset: 0; background: rgba(14,14,20,0.85);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -342,14 +342,6 @@
   .galeri-item:hover .galeri-overlay { opacity: 1; }
   .galeri-overlay p { font-size: 13px; color: var(--parchment); font-weight: 300; line-height: 1.5; }
   .galeri-overlay small { font-size: 11px; color: var(--gold); letter-spacing: 1px; margin-top: 6px; display: block; text-transform: uppercase; }
-  .galeri-item.video-item::before {
-    content: '▶'; position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 28px; color: var(--gold); z-index: 3;
-    width: 52px; height: 52px; border: 2px solid var(--gold); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    text-indent: 3px;
-  }
   .galeri-load-more { text-align: center; margin-top: 40px; }
 
   /* ÜYE KAYIT */
@@ -497,13 +489,11 @@
 </head>
 <body>
 
-<!-- TOAST -->
 <div class="toast" id="toast">
-  <h5>✓ Kaydınız Alındı!</h5>
-  <p>Üyelik başvurunuz incelemeye alındı. En kısa sürede size ulaşacağız.</p>
+  <h5>✓ İşlem Başarılı</h5>
+  <p>Talebiniz alınmıştır.</p>
 </div>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <ul>
     <li><a href="#duyurular" onclick="closeMobile()">Duyurular</a></li>
@@ -514,7 +504,6 @@
   </ul>
 </div>
 
-<!-- NAVIGATION -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
     <div class="emblem">Σ</div>
@@ -535,13 +524,12 @@
   </button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-ornament"></div>
   <div class="hero-content">
-    <div class="hero-tag">Est. 2019 · Üniversite Öğrenci Topluluğu</div>
+    <div class="hero-tag">Est. 2023 · Dumlupınar Üniversitesi</div>
     <h1>Siyasal <em>Düşünceler</em></h1>
     <div class="hero-divider"></div>
     <p class="hero-sub">Fikirlerin çarpıştığı, düşüncelerin şekillendiği, bakış açılarının derinleştiği bir akademik platform.</p>
@@ -558,350 +546,259 @@
     <div class="stat-sep"></div>
     <div class="stat">
       <span class="stat-num" id="count2">0</span>
-      <div class="stat-label">Etkinlik Düzenlendi</div>
-    </div>
-    <div class="stat-sep"></div>
-    <div class="stat">
-      <span class="stat-num" id="count3">0</span>
-      <div class="stat-label">Yıllık Deneyim</div>
+      <div class="stat-label">Etkinlik</div>
     </div>
     <div class="stat-sep"></div>
     <div class="stat">
       <span class="stat-num" id="count4">0</span>
-      <div class="stat-label">Panel & Konferans</div>
+      <div class="stat-label">Panel</div>
     </div>
   </div>
 </section>
 
-<!-- DUYURULAR -->
 <section class="section" id="duyurular">
   <div class="section-header reveal">
-    <span class="section-tag">Son Güncellemeler</span>
-    <h2 class="section-title">Duyurular & Haberler</h2>
-    <p class="section-desc">Topluluğumuzdan en güncel haberler ve önemli duyurular.</p>
+    <span class="section-tag">GÜNCEL</span>
+    <h2 class="section-title">Duyurular</h2>
+    <p class="section-desc">Topluluğumuzdan en güncel haberler.</p>
     <div class="section-rule"></div>
   </div>
   <div class="duyuru-grid">
     <div class="duyuru-card reveal" style="transition-delay:0.1s">
       <span class="duyuru-badge badge-yeni">Yeni</span>
-      <h3>2025–2026 Akademik Yılı Başvuruları Başladı</h3>
-      <p>Bu yıl topluluğumuza katılmak isteyenler için başvuru süreci resmi olarak açılmıştır. Sınırlı kontenjan nedeniyle erken başvuru önerilir.</p>
+      <h3>2025–2026 Üye Alımları Başladı</h3>
+      <p>Yeni dönemde aramıza katılmak isteyen arkadaşlarımız için başvuru formu aktiftir.</p>
       <div class="duyuru-meta">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        12 Şubat 2026
+        Şubat 2026
       </div>
     </div>
     <div class="duyuru-card reveal" style="transition-delay:0.2s">
       <span class="duyuru-badge badge-etkinlik">Etkinlik</span>
-      <h3>İlkbahar Konferansı Konuşmacıları Açıklandı</h3>
-      <p>Mart ayında düzenlenecek yıllık konferansımızın konuşmacı kadrosu netleşti. Bu yılın teması: "Demokrasi ve Dijital Dönüşüm".</p>
+      <h3>Kafka "Dava" Okuması</h3>
+      <p>Yakında Franz Kafka'nın eseri üzerine felsefi bir tartışma gerçekleştireceğiz.</p>
       <div class="duyuru-meta">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        8 Şubat 2026
+        Yakında
       </div>
     </div>
     <div class="duyuru-card reveal" style="transition-delay:0.3s">
-      <span class="duyuru-badge badge-genel">Genel</span>
-      <h3>Yeni Web Sitemiz Yayında!</h3>
-      <p>Topluluğumuzun yenilenmiş web sitesi artık aktif. Etkinlikler, galeri ve üye kayıt işlemlerini buradan takip edebilirsiniz.</p>
+      <span class="duyuru-badge badge-genel">Web</span>
+      <h3>Web Sitemiz Yayında</h3>
+      <p>Etkinlik takibini ve üyelik işlemlerini artık web sitemiz üzerinden yapabilirsiniz.</p>
       <div class="duyuru-meta">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        1 Şubat 2026
+        2026
       </div>
     </div>
   </div>
 </section>
 
-<!-- ETKİNLİKLER -->
 <section class="section" id="etkinlikler">
   <div class="section-header reveal">
-    <span class="section-tag">Yaklaşan & Geçmiş</span>
+    <span class="section-tag">Takvim</span>
     <h2 class="section-title">Etkinlikler</h2>
-    <p class="section-desc">Paneller, konferanslar, atölye çalışmaları ve tartışma oturumları.</p>
+    <p class="section-desc">Geçmişten bugüne düzenlediğimiz paneller ve söyleşiler.</p>
     <div class="section-rule"></div>
   </div>
   <div class="etkinlik-list">
 
     <div class="etkinlik-item reveal">
-      <div class="etkinlik-date"><div class="day">20</div><div class="month">Şub</div></div>
+      <div class="etkinlik-date"><div class="day">?</div><div class="month">Yakında</div></div>
       <div class="etkinlik-info">
-        <h3>Panel: Küresel Düzende Güç Dengesi</h3>
-        <p>Uluslararası ilişkiler perspektifinden günümüz küresel güç rekabetini, çok kutupluluğun yükselişini ve Türkiye'nin konumunu ele alacağımız interaktif panel.</p>
+        <h3>Franz Kafka – Dava</h3>
+        <p>Modern bürokrasi, yabancılaşma ve bireyin sistem karşısındaki konumu üzerine kitap okuma ve söyleşi etkinliği.</p>
         <div class="etkinlik-meta-row">
           <span class="etkinlik-meta-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            18:30 – 20:30
+            Tarih Duyurulacak
           </span>
           <span class="etkinlik-meta-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            D Blok Amfisi, 202
-          </span>
-          <span class="etkinlik-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Kontenjan: 120
+            Kampüs
           </span>
         </div>
       </div>
       <div class="etkinlik-action">
-        <div class="kapasite-bar">
-          <div class="kapasite-label">68%</div>
-          <div class="kapasite-track"><div class="kapasite-fill" style="width:68%"></div></div>
-        </div>
-        <a href="#uye-kayit" class="btn-katil" onclick="showToastEvent('Küresel Düzende Güç Dengesi Paneli')">Kayıt Ol</a>
+        <a href="#uye-kayit" class="btn-katil" onclick="showToastEvent('Kafka Etkinliği')">Kayıt Ol</a>
       </div>
     </div>
 
     <div class="etkinlik-item reveal" style="transition-delay:0.1s">
-      <div class="etkinlik-date"><div class="day">05</div><div class="month">Mar</div></div>
+      <div class="etkinlik-date"><div class="day">13</div><div class="month">Oca'23</div></div>
       <div class="etkinlik-info">
-        <h3>Konferans: Demokrasi ve Dijital Dönüşüm</h3>
-        <p>Dijital teknolojilerin demokratik süreçler üzerindeki etkilerini, dezenformasyonla mücadeleyi ve e-devlet uygulamalarını tartışacağımız yıllık konferans.</p>
+        <h3>Siyasal İlahiyat Üzerine</h3>
+        <p>Prof. Dr. Hayrettin Özler ile din–siyaset ilişkisi ve modern politik düşünce üzerine söyleşi. (Moderatör: Öğr. Gör. Osman Açar)</p>
         <div class="etkinlik-meta-row">
           <span class="etkinlik-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            10:00 – 17:00
-          </span>
-          <span class="etkinlik-meta-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Kongre Merkezi, Salon A
-          </span>
-          <span class="etkinlik-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Kontenjan: 250
+            Online (Google Meet)
           </span>
         </div>
       </div>
       <div class="etkinlik-action">
-        <div class="kapasite-bar">
-          <div class="kapasite-label">91%</div>
-          <div class="kapasite-track"><div class="kapasite-fill warn" style="width:91%"></div></div>
+        <a class="btn-katil full">Tamamlandı</a>
+      </div>
+    </div>
+
+    <div class="etkinlik-item reveal" style="transition-delay:0.1s">
+      <div class="etkinlik-date"><div class="day">24</div><div class="month">Oca'23</div></div>
+      <div class="etkinlik-info">
+        <h3>Foucault: İktidar ve Öznellik</h3>
+        <p>Doç. Dr. Efe Baştürk ile iktidar–bilgi ilişkisi ve öznenin kuruluşu üzerine teorik çerçeve tartışması.</p>
+        <div class="etkinlik-meta-row">
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Online (MS Teams)
+          </span>
         </div>
-        <a href="#uye-kayit" class="btn-katil" onclick="showToastEvent('Yıllık Konferans')">Kayıt Ol</a>
+      </div>
+      <div class="etkinlik-action">
+        <a class="btn-katil full">Tamamlandı</a>
       </div>
     </div>
 
     <div class="etkinlik-item reveal" style="transition-delay:0.2s">
-      <div class="etkinlik-date"><div class="day">18</div><div class="month">Mar</div></div>
+      <div class="etkinlik-date"><div class="day">08</div><div class="month">Ara'23</div></div>
       <div class="etkinlik-info">
-        <h3>Atölye: Siyasi Analiz Yazarlığı</h3>
-        <p>Etkin bir siyasi analizin nasıl yazılacağını, kaynak kullanımını ve akademik üslubu uygulamalı olarak öğreneceğiniz küçük gruplu atölye çalışması.</p>
+        <h3>Filozofların Filistin Meselesiyle İmtihanı</h3>
+        <p>Doç. Dr. Ahmet Dağ ile siyasal etik ve entelektüel sorumluluk bağlamında Filistin meselesi.</p>
         <div class="etkinlik-meta-row">
           <span class="etkinlik-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            14:00 – 17:00
-          </span>
-          <span class="etkinlik-meta-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Kütüphane, Çalışma Odası 3
-          </span>
-          <span class="etkinlik-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Kontenjan: 25
+            Online (MS Teams)
           </span>
         </div>
       </div>
       <div class="etkinlik-action">
-        <div class="kapasite-bar">
-          <div class="kapasite-label">100%</div>
-          <div class="kapasite-track"><div class="kapasite-fill warn" style="width:100%"></div></div>
+        <a class="btn-katil full">Tamamlandı</a>
+      </div>
+    </div>
+
+    <div class="etkinlik-item reveal" style="transition-delay:0.2s">
+      <div class="etkinlik-date"><div class="day">09</div><div class="month">Ara'25</div></div>
+      <div class="etkinlik-info">
+        <h3>The Truman Show – Film Gösterimi</h3>
+        <p>Hakikat, gözetim, medya ve özgürlük temaları üzerine film gösterimi ve değerlendirme.</p>
+        <div class="etkinlik-meta-row">
+          <span class="etkinlik-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            DPÜ Cep Sineması
+          </span>
         </div>
-        <a class="btn-katil full">Dolu</a>
+      </div>
+      <div class="etkinlik-action">
+        <a class="btn-katil full">Tamamlandı</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- GALERİ -->
 <section class="section" id="galeri">
   <div class="section-header reveal">
-    <span class="section-tag">Anılar & Belgeleme</span>
+    <span class="section-tag">Arşiv</span>
     <h2 class="section-title">Galeri</h2>
-    <p class="section-desc">Etkinliklerimizden kareler ve topluluk anıları.</p>
+    <p class="section-desc">Topluluk etkinliklerimizden kareler.</p>
     <div class="section-rule"></div>
   </div>
-  <div class="galeri-tabs reveal">
-    <button class="galeri-tab active" onclick="switchTab(this,'foto')">Fotoğraflar</button>
-    <button class="galeri-tab" onclick="switchTab(this,'video')">Videolar</button>
-  </div>
   <div class="galeri-grid" id="galeriGrid">
-    <!-- Fotograf items -->
-    <div class="galeri-item reveal" style="transition-delay:0.05s">
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span>2024 Yıllık Konferans</span>
-      </div>
-      <div class="galeri-overlay"><p>Yıllık Konferans açılış töreni</p><small>Mart 2024</small></div>
+    <div class="galeri-item reveal">
+      <div class="img-placeholder" style="background-image:url('assets/events/siyasal-ilahiyat-13012023.jpg'); background-size:cover;"></div>
+      <div class="galeri-overlay"><p>Siyasal İlahiyat Paneli</p><small>2023</small></div>
     </div>
     <div class="galeri-item reveal" style="transition-delay:0.1s">
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#1a1220,#2a1628)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span>Panel: AB-Türkiye İlişkileri</span>
-      </div>
-      <div class="galeri-overlay"><p>Panel tartışmaları ve soru-cevap oturumu</p><small>Kasım 2024</small></div>
+      <div class="img-placeholder" style="background-image:url('assets/events/foucault-24012023.jpg'); background-size:cover;"></div>
+      <div class="galeri-overlay"><p>Foucault Etkinliği</p><small>2023</small></div>
     </div>
     <div class="galeri-item reveal" style="transition-delay:0.15s">
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#0d1b12,#162010)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span>Münazara Gecesi</span>
-      </div>
-      <div class="galeri-overlay"><p>Bahar dönemi münazara etkinliği</p><small>Nisan 2024</small></div>
+      <div class="img-placeholder" style="background-image:url('assets/events/filistin-imtihani-08122023.jpg'); background-size:cover;"></div>
+      <div class="galeri-overlay"><p>Filistin Meselesi</p><small>2023</small></div>
     </div>
     <div class="galeri-item reveal" style="transition-delay:0.2s">
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#1e1208,#281a04)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span>Toplantı & Workshop</span>
-      </div>
-      <div class="galeri-overlay"><p>Aylık üye buluşması ve planlama toplantısı</p><small>Ekim 2024</small></div>
+      <div class="img-placeholder" style="background-image:url('assets/events/truman-show-09122025.jpg'); background-size:cover;"></div>
+      <div class="galeri-overlay"><p>Truman Show Gösterimi</p><small>2025</small></div>
     </div>
-    <div class="galeri-item reveal" style="transition-delay:0.25s">
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#0e1520,#111c2a)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span>Mezuniyet Töreni 2024</span>
-      </div>
-      <div class="galeri-overlay"><p>2023-24 mezun üyelerle veda fotoğrafı</p><small>Haziran 2024</small></div>
-    </div>
-    <div class="galeri-item reveal" style="transition-delay:0.3s">
-      <div class="img-placeholder" style="background:linear-gradient(135deg,#1a0e14,#20101a)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span>Gezimiz: Ankara TBMM</span>
-      </div>
-      <div class="galeri-overlay"><p>TBMM gezisi ve milletvekili görüşmesi</p><small>Mayıs 2024</small></div>
-    </div>
-  </div>
-
-  <div class="galeri-load-more reveal">
-    <button class="btn-secondary" onclick="showToastEvent('Tüm galeri yakında yüklenecek')">Daha Fazla Göster</button>
   </div>
 </section>
 
-<!-- HAKKIMIZDA -->
 <section class="section" id="hakkimizda">
   <div class="section-header reveal">
-    <span class="section-tag">Kim Biz?</span>
+    <span class="section-tag">Biz Kimiz?</span>
     <h2 class="section-title">Hakkımızda</h2>
     <div class="section-rule"></div>
   </div>
   <div class="hakkimizda-inner">
     <div class="hakkimizda-text reveal">
-      <p>Siyasal Düşünceler Topluluğu, 2019 yılında bir grup öğrencinin siyasi fikir ve teorileri özgürce tartışabileceği, akademik bir ortam yaratma hayaliyle kuruldu.</p>
-      <p>Bugün, farklı bölümlerden 200'den fazla aktif üyemizle, yılda onlarca etkinlik düzenliyor; paneller, konferanslar, münazaralar ve atölye çalışmaları aracılığıyla düşüncenin sınırlarını genişletiyoruz.</p>
-      <p>Her fikrin sesinin duyulduğu, her bakış açısının saygıyla karşılandığı bir alan inşa etmeye devam ediyoruz.</p>
+      <p>Siyasal Düşünceler Topluluğu, öğrencilerin siyasi fikir ve teorileri özgürce tartışabileceği akademik bir ortam yaratma hayaliyle kuruldu.</p>
+      <p>Panel, konferans ve atölye çalışmalarıyla düşüncenin sınırlarını genişletiyoruz. Her fikrin sesinin duyulduğu, her bakış açısının saygıyla karşılandığı bir alan inşa etmeye devam ediyoruz.</p>
       <a href="#uye-kayit" class="btn-primary" style="margin-top:10px;display:inline-block">Aramıza Katıl</a>
     </div>
     <div class="hakkimizda-values reveal" style="transition-delay:0.2s">
       <div class="value-item">
         <div class="value-num">01</div>
-        <div class="value-content">
-          <h4>Özgür Düşünce</h4>
-          <p>Her siyasi yelpazeden fikre saygı duyuyor, ideolojik çoğulculuğu önemsiyoruz.</p>
-        </div>
+        <div class="value-content"><h4>Özgür Düşünce</h4><p>Her siyasi yelpazeden fikre saygı duyuyoruz.</p></div>
       </div>
       <div class="value-item">
         <div class="value-num">02</div>
-        <div class="value-content">
-          <h4>Akademik Titizlik</h4>
-          <p>Kanıta dayalı argümanlar üretmeyi, kaynaklara önem vermeyi temel ilke olarak benimsiyoruz.</p>
-        </div>
-      </div>
-      <div class="value-item">
-        <div class="value-num">03</div>
-        <div class="value-content">
-          <h4>Kapsayıcı Ortam</h4>
-          <p>Farklı bölüm, sınıf ve arka planlardan öğrencileri bir araya getiren kucaklayıcı bir topluluk.</p>
-        </div>
-      </div>
-      <div class="value-item">
-        <div class="value-num">04</div>
-        <div class="value-content">
-          <h4>Sürekli Gelişim</h4>
-          <p>Her etkinlikte, her tartışmada birlikte büyüyüp öğreniyoruz.</p>
-        </div>
+        <div class="value-content"><h4>Akademik Titizlik</h4><p>Kanıta dayalı argümanlar ve kaynak kullanımı esastır.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ÜYE KAYIT -->
 <section class="section" id="uye-kayit">
   <div class="section-header reveal">
-    <span class="section-tag">Aramıza Katıl</span>
-    <h2 class="section-title">Üyelik Başvurusu</h2>
-    <p class="section-desc">Topluluğumuzun bir parçası olmak için formu doldurun.</p>
+    <span class="section-tag">Başvuru</span>
+    <h2 class="section-title">Aramıza Katıl</h2>
     <div class="section-rule"></div>
   </div>
   <div class="kayit-wrap">
     <div class="kayit-form reveal">
       <div id="formContent">
         <div class="form-row">
-          <div class="form-group">
-            <label>Ad</label>
-            <input type="text" placeholder="Adınız" id="fname">
-          </div>
-          <div class="form-group">
-            <label>Soyad</label>
-            <input type="text" placeholder="Soyadınız" id="lname">
-          </div>
+          <div class="form-group"><label>Ad</label><input type="text" id="fname" placeholder="Adınız"></div>
+          <div class="form-group"><label>Soyad</label><input type="text" id="lname" placeholder="Soyadınız"></div>
         </div>
-        <div class="form-group">
-          <label>E-Posta Adresi</label>
-          <input type="email" placeholder="ornek@universite.edu.tr" id="email">
-        </div>
+        <div class="form-group"><label>E-Posta Adresi</label><input type="email" id="email" placeholder="ornek@dpu.edu.tr"></div>
         <div class="form-row">
           <div class="form-group">
-            <label>Bölüm / Fakülte</label>
-            <select id="bolum">
-              <option value="">Bölümünüzü seçin</option>
-              <option>Siyaset Bilimi ve Kamu Yönetimi</option>
-              <option>Uluslararası İlişkiler</option>
-              <option>Hukuk</option>
-              <option>İktisat</option>
-              <option>Sosyoloji</option>
-              <option>Felsefe</option>
-              <option>Tarih</option>
-              <option>Diğer</option>
-            </select>
+            <label>Bölüm</label>
+            <input type="text" id="bolum" placeholder="Bölümünüz">
           </div>
           <div class="form-group">
             <label>Sınıf</label>
             <select id="sinif">
-              <option value="">Sınıfınızı seçin</option>
-              <option>1. Sınıf</option>
-              <option>2. Sınıf</option>
-              <option>3. Sınıf</option>
-              <option>4. Sınıf</option>
-              <option>Yüksek Lisans</option>
-              <option>Doktora</option>
+              <option value="Hazırlık">Hazırlık</option>
+              <option value="1. Sınıf">1. Sınıf</option>
+              <option value="2. Sınıf">2. Sınıf</option>
+              <option value="3. Sınıf">3. Sınıf</option>
+              <option value="4. Sınıf">4. Sınıf</option>
+              <option value="Yüksek Lisans">Yüksek Lisans</option>
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label>Kendinizi Tanıtın (İsteğe Bağlı)</label>
-          <textarea placeholder="Topluluğumuza neden katılmak istiyorsunuz? İlgi alanlarınız neler?" id="tanitim"></textarea>
-        </div>
         <div class="form-check">
           <input type="checkbox" id="kvkk">
-          <label for="kvkk">Kişisel verilerimin topluluğun faaliyetleri kapsamında işlenmesine izin veriyorum. <a href="#">KVKK Aydınlatma Metni</a>'ni okudum ve kabul ediyorum.</label>
+          <label for="kvkk">Kişisel verilerimin işlenmesini kabul ediyorum.</label>
         </div>
         <button class="btn-submit" onclick="submitForm()">BAŞVURUYU GÖNDER</button>
-        <p class="form-note">Başvurunuz incelendikten sonra e-posta ile bilgilendirileceksiniz.</p>
       </div>
       <div class="form-success" id="formSuccess">
         <div class="success-icon">✦</div>
         <h3>Başvurunuz Alındı!</h3>
-        <p>Yakında sizi e-posta yoluyla bilgilendireceğiz. Topluluğumuza hoş geldiniz!</p>
+        <p>En kısa sürede iletişime geçeceğiz.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="emblem-lg">Σ</div>
       <h3>Siyasal Düşünceler Topluluğu</h3>
-      <p>Fikirlerin özgürce tartışıldığı, farklı bakış açılarının buluştuğu akademik bir öğrenci platformu.</p>
+      <p>Kütahya Dumlupınar Üniversitesi</p>
     </div>
     <div class="footer-col">
       <h4>Hızlı Erişim</h4>
@@ -909,135 +806,132 @@
         <li><a href="#duyurular">Duyurular</a></li>
         <li><a href="#etkinlikler">Etkinlikler</a></li>
         <li><a href="#galeri">Galeri</a></li>
-        <li><a href="#hakkimizda">Hakkımızda</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Topluluk</h4>
-      <ul>
-        <li><a href="#uye-kayit">Üye Ol</a></li>
-        <li><a href="#">Yönetim Kurulu</a></li>
-        <li><a href="#">Tüzük</a></li>
-        <li><a href="#">İletişim</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>İletişim</h4>
       <ul>
-        <li><a href="#">sdt@universite.edu.tr</a></li>
-        <li><a href="#">D Blok, Kat 2, Oda 14</a></li>
-        <li><a href="#">Her Çarşamba 17:00</a></li>
+        <li><a href="mailto:sdt@dpu.edu.tr">sdt@dpu.edu.tr</a></li>
+        <li><a href="admin.html">Yönetici Girişi</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Siyasal Düşünceler Topluluğu. Tüm hakları saklıdır.</p>
-    <div class="social-links">
-      <a href="#" class="social-link">in</a>
-      <a href="#" class="social-link">tw</a>
-      <a href="#" class="social-link">ig</a>
-    </div>
+    <p>© 2026 Siyasal Düşünceler Topluluğu.</p>
   </div>
 </footer>
 
-<script>
-// ── COUNTER ANIMATION ──
-function animateCounter(el, target, duration) {
-  let start = 0;
-  const step = target / (duration / 16);
-  const timer = setInterval(() => {
-    start += step;
-    if (start >= target) { el.textContent = target + (target < 10 ? '' : '+'); clearInterval(timer); }
-    else el.textContent = Math.floor(start) + '+';
-  }, 16);
-}
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    animateCounter(document.getElementById('count1'), 200, 1500);
-    animateCounter(document.getElementById('count2'), 80, 1800);
-    animateCounter(document.getElementById('count3'), 6, 1000);
-    animateCounter(document.getElementById('count4'), 24, 1400);
-  }, 500);
-});
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// ── SCROLL REVEAL ──
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // 🔴 SENİN FIREBASE AYARLARIN 🔴
+  const firebaseConfig = {
+    apiKey: "AIzaSyDPLsa0Vstirz25FU4JAp5oUcTHJXcOM5I",
+    authDomain: "siyasal-dusunceler-toplulugu.firebaseapp.com",
+    projectId: "siyasal-dusunceler-toplulugu",
+    storageBucket: "siyasal-dusunceler-toplulugu.firebasestorage.app",
+    messagingSenderId: "739243257292",
+    appId: "1:739243257292:web:2297646bb9296077088169",
+    measurementId: "G-TE8JH9KR9G"
+  };
 
-// ── ACTIVE NAV ──
-const sections = ['duyurular','etkinlikler','galeri','hakkimizda','uye-kayit'];
-window.addEventListener('scroll', () => {
-  const pos = window.scrollY + 100;
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-    if (el && link) {
-      if (pos >= el.offsetTop && pos < el.offsetTop + el.offsetHeight)
-        link.classList.add('active');
-      else link.classList.remove('active');
-    }
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // SAYFA YÜKLENİNCE (Admin Panelinden Gelen Hakkımızda Yazısını Çek)
+  window.addEventListener('load', async () => {
+    // Sayaç Animasyonları
+    setTimeout(() => {
+        animateCounter(document.getElementById('count1'), 200, 1500);
+        animateCounter(document.getElementById('count2'), 80, 1800);
+        animateCounter(document.getElementById('count4'), 24, 1400);
+    }, 500);
+
+    // Firebase'den Veri Çekme
+    try {
+      const docSnap = await getDoc(doc(db, "ayarlar", "genel"));
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        if(data.hakkimizda) {
+          // Yeni tasarımdaki p etiketini bulup güncelle
+          const aboutP = document.querySelector('#hakkimizda .hakkimizda-text p');
+          if(aboutP) aboutP.innerHTML = data.hakkimizda.replace(/\n/g, '<br>');
+        }
+      }
+    } catch(e) { console.log("Veri çekme hatası:", e); }
   });
-});
 
-// ── MOBILE MENU ──
-function toggleMobile() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-function closeMobile() {
-  document.getElementById('mobileMenu').classList.remove('open');
-}
+  // FORM GÖNDERME
+  window.submitForm = async () => {
+    const fname = document.getElementById('fname').value;
+    const lname = document.getElementById('lname').value;
+    const email = document.getElementById('email').value;
+    const bolum = document.getElementById('bolum').value;
+    const sinif = document.getElementById('sinif').value;
+    const kvkk = document.getElementById('kvkk').checked;
 
-// ── GALERİ TABS ──
-function switchTab(btn, type) {
-  document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  const grid = document.getElementById('galeriGrid');
-  if (type === 'video') {
-    grid.innerHTML = `
-      <div class="galeri-item video-item reveal visible" style="background:linear-gradient(135deg,#0e1520,#111c2a)">
-        <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Konferans Açılış Konuşması</span></div>
-        <div class="galeri-overlay"><p>2024 Yıllık Konferans — Açılış</p><small>15 dk · Mart 2024</small></div>
-      </div>
-      <div class="galeri-item video-item reveal visible" style="background:linear-gradient(135deg,#1a0e14,#20101a)">
-        <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Panel Özeti: Küresel Güç</span></div>
-        <div class="galeri-overlay"><p>Panel kayıt özeti</p><small>28 dk · Şubat 2024</small></div>
-      </div>
-      <div class="galeri-item video-item reveal visible" style="background:linear-gradient(135deg,#0d1b12,#162010)">
-        <div class="img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Münazara: Popülizm</span></div>
-        <div class="galeri-overlay"><p>Bahar münazarası tam kayıt</p><small>45 dk · Nisan 2024</small></div>
-      </div>`;
-  } else {
-    location.reload(); // reset
+    if (!fname || !email) { alert('Lütfen ad ve e-posta alanlarını doldurun.'); return; }
+    if (!kvkk) { alert('Lütfen KVKK metnini kabul edin.'); return; }
+
+    const btn = document.querySelector('.btn-submit');
+    const originalText = btn.textContent;
+    btn.textContent = "GÖNDERİLİYOR...";
+    btn.disabled = true;
+
+    try {
+      await addDoc(collection(db, "basvurular"), {
+        ad: fname,
+        soyad: lname,
+        email: email,
+        bolum: bolum,
+        sinif: sinif,
+        timestamp: new Date()
+      });
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      showToast();
+    } catch (e) {
+      console.error(e);
+      alert("Bir hata oluştu.");
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
   }
-}
 
-// ── FORM SUBMIT ──
-function submitForm() {
-  const fname = document.getElementById('fname').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const kvkk = document.getElementById('kvkk').checked;
-  if (!fname || !email) { alert('Lütfen ad ve e-posta alanlarını doldurun.'); return; }
-  if (!kvkk) { alert('Lütfen KVKK metnini kabul edin.'); return; }
-  document.getElementById('formContent').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
-  showToast();
-}
+  // --- UI JS FONKSİYONLARI (Global Scope'a taşıyoruz) ---
+  window.toggleMobile = function() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  window.closeMobile = function() { document.getElementById('mobileMenu').classList.remove('open'); }
+  window.showToast = function() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+  }
+  window.showToastEvent = function(name) {
+    const t = document.getElementById('toast');
+    t.querySelector('h5').textContent = '✓ Kayıt Formu';
+    t.querySelector('p').textContent = name + ' için aşağıdan kayıt olabilirsiniz.';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
 
-// ── TOAST ──
-function showToast() {
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 4000);
-}
-function showToastEvent(name) {
-  const t = document.getElementById('toast');
-  t.querySelector('h5').textContent = '✓ Kayıt Formu Açıldı!';
-  t.querySelector('p').textContent = name + ' için formu doldurun.';
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
+  // Sayaç Fonksiyonu
+  function animateCounter(el, target, duration) {
+    if(!el) return;
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { el.textContent = target + (target < 10 ? '' : '+'); clearInterval(timer); }
+      else el.textContent = Math.floor(start) + '+';
+    }, 16);
+  }
+
+  // Scroll Reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
